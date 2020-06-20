@@ -14,7 +14,7 @@ public:
 	int BuyOrSellStock;
 	double BuyOrSellAt;
 	double BuyOrSellLots;
-	//³õÊ¼»¯ 
+	//åˆå§‹åŒ– 
 	lib(string BOrS,int code,double At,double Lots){
 		BuyOrSell=BOrS;
 		BuyOrSellStock=code;
@@ -27,7 +27,7 @@ public:
 }; 
 typedef lib ElemType;
 
-//¶ÓµÄÀà¶¨Òå 
+//é˜Ÿçš„ç±»å®šä¹‰ 
 class que{					
 	ElemType data[MAXSIZE];
 	int front;
@@ -38,21 +38,21 @@ public:
 	rear=0;
 	}
 
-	bool isEmpty(){			//ÅĞ¿Õ 
+	bool isEmpty(){			//åˆ¤ç©º 
 	if(front==rear)
 		return 1;
 	else
 		return 0;
 	}
 
-	bool isFull(){				//ÅĞÂú 
+	bool isFull(){				//åˆ¤æ»¡ 
 	if((rear+1)%MAXSIZE==front)
 		return 1;
 	else
 		return 0;
 }
 
-	Status in(ElemType e){	//Èë¶Ó 
+	Status in(ElemType e){	//å…¥é˜Ÿ 
 	if(isFull())
 		return 0;
 	else{
@@ -65,7 +65,7 @@ public:
 	return 1;
 	}
 
-	ElemType out(){			//³ö¶Ó 
+	ElemType out(){			//å‡ºé˜Ÿ 
 	if(isEmpty())
 		;
 	else{
@@ -78,12 +78,12 @@ public:
 	}
 	}
 };
-//¹şÏ£±í½Úµã 
+//å“ˆå¸Œè¡¨èŠ‚ç‚¹ 
 class HashItem{
     int key;
 	double val;
 public:
-    HashItem(int k, double v): key(k), val(v){}//¹¹Ôì·½·¨ 
+    HashItem(int k, double v): key(k), val(v){}//æ„é€ æ–¹æ³• 
     const int& getKey(){
         return key;
     }
@@ -91,10 +91,10 @@ public:
         return val;
     }
 };
-//¹şÏ£±í 
+//å“ˆå¸Œè¡¨ 
 class HashTable{
     static const int SIZE = 256;
-    HashItem ** table;      // Ö¸ÕëµÄÖ¸Õë£¬Ö¸ÏòHashItem*
+    HashItem ** table;      // æŒ‡é’ˆçš„æŒ‡é’ˆï¼ŒæŒ‡å‘HashItem*
 public:
 	
     HashTable(){
@@ -113,7 +113,7 @@ public:
     	int idx = key%SIZE;
     	while(table[idx] && table[idx]->getKey() != key)
         	idx = (idx+1)%SIZE;          
-    	return table[idx] ? table[idx]->getVal() : -1;      // key²»´æÔÚ·µ»Ø-1 
+    	return table[idx] ? table[idx]->getVal() : -1;      // keyä¸å­˜åœ¨è¿”å›-1 
 	}
 	void show(){
 		cout<<"\n\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n";
@@ -131,7 +131,7 @@ public:
     }
 };
 
-//Ñ¯ÎÊµ±Ç°´¦ÀíÆ÷ÆµÂÊºÍ¼ÆÊıÆ÷£¬±£Ö¤Ëæ»úÊıÖÖ×ÓÔÚ1sÄÚÒ²ÓĞ±ä»¯ 
+//è¯¢é—®å½“å‰å¤„ç†å™¨é¢‘ç‡å’Œè®¡æ•°å™¨ï¼Œä¿è¯éšæœºæ•°ç§å­åœ¨1så†…ä¹Ÿæœ‰å˜åŒ– 
 int randEx(){
 	LARGE_INTEGER seed;
 	QueryPerformanceFrequency(&seed);
@@ -139,7 +139,7 @@ int randEx(){
 	srand(seed.QuadPart);
 	return rand();
 }
-//Ëæ»úÓÎ×ß 
+//éšæœºæ¸¸èµ° 
 double randomwalk(double mae){
 	double ato=mae;
 	double delta;
@@ -154,14 +154,14 @@ double randomwalk(double mae){
 	return ato;
 }
 
-//ÕË»§Àà 
+//è´¦æˆ·ç±» 
 class account{
-public:	//ÍµÀÁ£¬½«ËùÓĞÔªËØÉèÎªpublic£¬ºÃº¢×Ó²»ÒªÑ§ 
-	int balance;//Óà¶î¡£
-	int cap;//³Ö²ÖÊĞÖµ 
-	HashTable position;//¹şÏ£±í´æ´¢¸ÃÕË»§³Ö²ÖÇé¿ö 
+public:	//å·æ‡’ï¼Œå°†æ‰€æœ‰å…ƒç´ è®¾ä¸ºpublicï¼Œå¥½å­©å­ä¸è¦å­¦ 
+	int balance;//ä½™é¢ã€‚
+	int cap;//æŒä»“å¸‚å€¼ 
+	HashTable position;//å“ˆå¸Œè¡¨å­˜å‚¨è¯¥è´¦æˆ·æŒä»“æƒ…å†µ 
 	
-	account(){//¹¹Ôì·½·¨ 
+	account(){//æ„é€ æ–¹æ³• 
 		balance=cap=1000000;
 		position.set(114514,0);
 		position.set(310430,0);
@@ -182,19 +182,19 @@ public:	//ÍµÀÁ£¬½«ËùÓĞÔªËØÉèÎªpublic£¬ºÃº¢×Ó²»ÒªÑ§
 
 int main(){
 	HashTable SSE;
-	//³õÊ¼»¯ÈıÖ§¹ÉÆ±
+	//åˆå§‹åŒ–ä¸‰æ”¯è‚¡ç¥¨
 	SSE.set(114514,100);
 	SSE.set(310430,10);
 	SSE.set(434107,20);
-	//³õÊ¼»¯¼ÇÂ¼
+	//åˆå§‹åŒ–è®°å½•
 	que record;
 	ofstream fout;
 	fout.open("record.txt");
-    fout<<"          ±¾´ÎÄ£Äâ¼ÇÂ¼\nB/S\tStock Code\tPrice\tLots\n";
+    fout<<"          æœ¬æ¬¡æ¨¡æ‹Ÿè®°å½•\nB/S\tStock Code\tPrice\tLots\n";
     fout.close();
-	//³õÊ¼»¯Ò»¸ö¹ÉÆ±ÕË»§ 
+	//åˆå§‹åŒ–ä¸€ä¸ªè‚¡ç¥¨è´¦æˆ· 
 	account Harune;
-	//ÓÃ»§½çÃæ 
+	//ç”¨æˆ·ç•Œé¢ 
 	cout<<"############Welcome to SSE simulator############";
 	int cmd;	
 	for(int i=1;i<=10;i++){
@@ -210,12 +210,12 @@ int main(){
 				cout<<"Which stock would you like to BUY?\nCode:";
 				int code;
 				cin>>code;
-				//Èç¹û¹ÉÆ±´úÂë²»´æÔÚ 
+				//å¦‚æœè‚¡ç¥¨ä»£ç ä¸å­˜åœ¨ 
 				if(SSE.get(code) == -1){
 					cout<<"\nCode:"<<code<<" NOT FOUND!\n\n";
 					continue;
 				} 
-				//Èç¹ûÓà¶îÎª0 
+				//å¦‚æœä½™é¢ä¸º0 
 				if(Harune.balance==0)
 					cout<<"You can`t buy any!Sell some of your positions maybe?\n";
 				else{
@@ -223,7 +223,7 @@ int main(){
 					cout<<"Lots:";
 					int bullish;
 					cin>>bullish; 
-					//Èç¹ûÂòÈëÊıÁ¿³¬¹ı×î´ó¿É¹ºÊıÁ¿£¬»òÂòÈëÊıÁ¿<0 
+					//å¦‚æœä¹°å…¥æ•°é‡è¶…è¿‡æœ€å¤§å¯è´­æ•°é‡ï¼Œæˆ–ä¹°å…¥æ•°é‡<0 
 					if(bullish < 0 or bullish > Harune.balance / SSE.get(code)){
 						cout<<"Invalid entrust!\n";
 					}else{
@@ -231,7 +231,7 @@ int main(){
 						Harune.balance -= bullish * SSE.get(code);
 						Harune.position.set(code , Harune.position.get(code) + bullish);
 						Harune.show();
-						//´´½¨¼ÇÂ¼²¢Èë¶Ó 
+						//åˆ›å»ºè®°å½•å¹¶å…¥é˜Ÿ 
 						lib temp("Buy",code,SSE.get(code),bullish);
 						record.in(temp);
 					}
@@ -251,7 +251,7 @@ int main(){
 					Harune.balance += bearish * SSE.get(code);
 					Harune.position.set(code , Harune.position.get(code) - bearish);
 					Harune.show();
-					//´´½¨¼ÇÂ¼²¢Èë¶Ó 
+					//åˆ›å»ºè®°å½•å¹¶å…¥é˜Ÿ 
 					lib temp("Sell",code,SSE.get(code),bearish);
 					record.in(temp);
 				}
@@ -259,7 +259,7 @@ int main(){
 				SSE.show();
 			}
 		}
-		//Ò»Ìì½áÊø£¬¸üĞÂÃ÷ÈÕ¹ÉÆ±¼Û¸ñ£¬²¢¸üĞÂÕË»§ÊĞÖµ 
+		//ä¸€å¤©ç»“æŸï¼Œæ›´æ–°æ˜æ—¥è‚¡ç¥¨ä»·æ ¼ï¼Œå¹¶æ›´æ–°è´¦æˆ·å¸‚å€¼ 
 		SSE.set(114514,randomwalk(SSE.get(114514)));
 		SSE.set(310430,randomwalk(SSE.get(310430)));
 		SSE.set(434107,randomwalk(SSE.get(434107)));	
@@ -276,7 +276,7 @@ int main(){
 	cout<<"\n*********************************\n";
 	ofstream fout1;
 	fout1.open("record.txt",ios_base::app);
-	//³ö¶ÓÖ±ÖÁ¶ÓÁĞÎª¿Õ 
+	//å‡ºé˜Ÿç›´è‡³é˜Ÿåˆ—ä¸ºç©º 
 	while(not record.isEmpty()){
 		lib temp;
 		temp=record.out();
